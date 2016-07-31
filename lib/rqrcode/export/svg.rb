@@ -22,9 +22,12 @@ module RQRCode
 
         # height and width dependent on offset and QR complexity
         dimension = (self.module_count*module_size) + (2*offset)
+        view_box = "0 0 #{dimension} #{dimension}"
+
+        css_class = options[:class] || "rqr-code"
 
         xml_tag = %{<?xml version="1.0" standalone="yes"?>}
-        open_tag = %{<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="#{dimension}" height="#{dimension}" shape-rendering="#{shape_rendering}">}
+        open_tag = %{<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" viewBox="#{view_box}" width="#{dimension}" height="#{dimension}" shape-rendering="#{shape_rendering}" class="#{css_class}">}
         close_tag = "</svg>"
 
         result = []
